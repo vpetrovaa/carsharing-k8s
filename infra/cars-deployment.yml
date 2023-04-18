@@ -54,4 +54,9 @@ spec:
                 configMapKeyRef:
                   name: mongo-configmap
                   key: MONGODB_HOST
+            - name: HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: cars-configmap
+                  key: HOST
 
