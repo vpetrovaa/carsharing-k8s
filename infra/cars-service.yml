@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cars
+spec:
+  selector:
+    app: cars
+  ports:
+    - port: 8093
+      targetPort: 8093
+  type: NodePort

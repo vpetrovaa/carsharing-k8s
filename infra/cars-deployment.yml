@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cars
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cars
+  template:
+    metadata:
+      labels:
+        app: cars
+    spec:
+      containers:
+        - name: cars
+          image: vpetrovaa/cars:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8093
+          env:
+            - name: EVENTS_LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: cars-configmap
+                  key: EVENTS_LOG_LEVEL
+            - name: JDBC_LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: cars-configmap
+                  key: JDBC_LOG_LEVEL
+            - name: KAFKA_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: cars-secrets
+                  key: KAFKA_PORT
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secrets
+                  key: USERNAME
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secrets
+                  key: PASSWORD
+            - name: MONGODB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-configmap
+                  key: MONGODB_PORT
+            - name: MONGODB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-configmap
+                  key: MONGODB_HOST
+

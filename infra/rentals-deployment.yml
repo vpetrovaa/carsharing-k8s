@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rentals
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rentals
+  template:
+    metadata:
+      labels:
+        app: rentals
+    spec:
+      containers:
+        - name: rentals
+          image: vpetrovaa/rentals:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8094
+          env:
+            - name: EVENTS_LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: rentals-configmap
+                  key: EVENTS_LOG_LEVEL
+            - name: JDBC_LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: rentals-configmap
+                  key: JDBC_LOG_LEVEL
+            - name: HOST
+              valueFrom:
+                secretKeyRef:
+                  name: rentals-secrets
+                  key: HOST
+            - name: KAFKA_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: rentals-secrets
+                  key: KAFKA_PORT
+            - name: USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secrets
+                  key: USERNAME
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongo-secrets
+                  key: PASSWORD
+            - name: MONGODB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-configmap
+                  key: MONGODB_PORT
+            - name: MONGODB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: mongo-configmap
+                  key: MONGODB_HOST
