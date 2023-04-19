@@ -7,5 +7,3 @@ data:
   EVENTS_LOG_LEVEL: INFO
   MONGODB_PORT: "27017"
   MONGODB_HOST: mongodb
-  MONGODB_CARS: cars
-  MONGODB_RENTALS: rentals

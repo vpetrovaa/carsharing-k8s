@@ -1,5 +1,27 @@
 cd infra/
 
+kubectl delete -f mongo-secrets.yml
+kubectl delete -f mongo-configmap.yml
+kubectl delete -f mongo-stateful.yml
+kubectl delete -f mongo-service.yml
+kubectl delete -f zookeeper-configmap.yml
+kubectl delete -f zookeeper-stateful.yml
+kubectl delete -f zookeeper-service.yml
+kubectl delete -f kafka-configmap.yml
+kubectl delete -f kafka-deployment.yml
+kubectl delete -f kafka-service.yml
+kubectl delete -f rentals-secrets.yml
+kubectl delete -f rentals-configmap.yml
+kubectl delete -f rentals-deployment.yml
+kubectl delete -f rentals-service.yml
+kubectl delete -f cars-secrets.yml
+kubectl delete -f cars-configmap.yml
+kubectl delete -f cars-deployment.yml
+kubectl delete -f cars-service.yml
+
+kubectl apply -f istio/istio-ingress.yml
+kubectl apply -f istio/istio-destination.yml
+kubectl apply -f istio/istio-authentication.yml
 kubectl apply -f mongo-secrets.yml
 kubectl apply -f mongo-configmap.yml
 kubectl apply -f mongo-stateful.yml

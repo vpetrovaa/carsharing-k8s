@@ -30,6 +30,8 @@ spec:
                 secretKeyRef:
                   name: mongo-secrets
                   key: PASSWORD
+            - name: MONGO_INIT_DB_DATABASE
+              value: carsharing
       volumes:
         - name: mongodb-data
           hostPath:
