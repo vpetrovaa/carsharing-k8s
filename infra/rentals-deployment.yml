@@ -29,11 +29,6 @@ spec:
                 configMapKeyRef:
                   name: rentals-configmap
                   key: JDBC_LOG_LEVEL
-            - name: HOST
-              valueFrom:
-                secretKeyRef:
-                  name: rentals-secrets
-                  key: HOST
             - name: KAFKA_PORT
               valueFrom:
                 secretKeyRef:

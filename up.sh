@@ -1,5 +1,8 @@
 cd infra/
 
+kubectl delete -f istio/istio-ingress.yml
+kubectl delete -f istio/istio-destination.yml
+kubectl delete -f istio/istio-authentication.yml
 kubectl delete -f mongo-secrets.yml
 kubectl delete -f mongo-configmap.yml
 kubectl delete -f mongo-stateful.yml
