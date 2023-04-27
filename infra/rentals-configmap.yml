@@ -5,3 +5,4 @@ metadata:
 data:
   JDBC_LOG_LEVEL: INFO
   EVENTS_LOG_LEVEL: INFO
+  KAFKA_HOST: my-cluster-kafka-bootstrap
